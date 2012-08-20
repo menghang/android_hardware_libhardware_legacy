@@ -2456,6 +2456,9 @@ audio_devices_t AudioPolicyManagerBase::getDeviceForInputSource(int inputSource)
             device = AUDIO_DEVICE_IN_REMOTE_SUBMIX;
         }
         break;
+	case AUDIO_SOURCE_AF:
+		device = AudioSystem::DEVICE_IN_AF;
+		break;
     default:
         ALOGW("getDeviceForInputSource() invalid input source %d", inputSource);
         break;
@@ -3362,6 +3365,7 @@ const struct StringToEnum sDeviceNameToEnumTable[] = {
     STRING_TO_ENUM(AUDIO_DEVICE_IN_ANLG_DOCK_HEADSET),
     STRING_TO_ENUM(AUDIO_DEVICE_IN_DGTL_DOCK_HEADSET),
     STRING_TO_ENUM(AUDIO_DEVICE_IN_USB_ACCESSORY),
+    STRING_TO_ENUM(AUDIO_DEVICE_IN_AF),
 };
 
 const struct StringToEnum sFlagNameToEnumTable[] = {
