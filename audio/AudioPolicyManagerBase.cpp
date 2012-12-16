@@ -2452,6 +2452,9 @@ audio_devices_t AudioPolicyManagerBase::getDeviceForInputSource(int inputSource)
             device = AudioSystem::DEVICE_IN_VOICE_CALL;
         }
         break;
+	case AUDIO_SOURCE_AF:
+		device = AudioSystem::DEVICE_IN_AF;
+		break;
     default:
         ALOGW("getDeviceForInputSource() invalid input source %d", inputSource);
         break;
@@ -3112,7 +3115,7 @@ status_t AudioPolicyManagerBase::AudioInputDescriptor::dump(int fd)
 AudioPolicyManagerBase::StreamDescriptor::StreamDescriptor()
     :   mIndexMin(0), mIndexMax(1), mCanBeMuted(true)
 {
-    mIndexCur.add(AUDIO_DEVICE_OUT_DEFAULT, 0);
+    mIndexCur.add(AUDIO_DEVICE_OUT_DEFAULT, 1);
 }
 
 int AudioPolicyManagerBase::StreamDescriptor::getVolumeIndex(audio_devices_t device)
@@ -3354,6 +3357,7 @@ const struct StringToEnum sDeviceNameToEnumTable[] = {
     STRING_TO_ENUM(AUDIO_DEVICE_IN_AUX_DIGITAL),
     STRING_TO_ENUM(AUDIO_DEVICE_IN_VOICE_CALL),
     STRING_TO_ENUM(AUDIO_DEVICE_IN_BACK_MIC),
+    STRING_TO_ENUM(AUDIO_DEVICE_IN_AF),
 #ifdef QCOM_HARDWARE
     STRING_TO_ENUM(AUDIO_DEVICE_IN_COMMUNICATION),
 #endif
